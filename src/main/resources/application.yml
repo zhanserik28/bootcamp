@@ -1,0 +1,25 @@
+app:
+  dataSource:
+    postgres:
+      port: 5432
+      username: postgres
+      password: password
+      host: localhost
+      databaseName: test
+      jdbc-url: jdbc:postgresql://${app.dataSource.postgres.host}:${app.dataSource.postgres.port}/${app.dataSource.postgres.databaseName}
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: ${app.dataSource.postgres.username}
+    password: ${app.dataSource.postgres.password}
+    url: ${app.dataSource.postgres.jdbc-url}
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  resources:
+    static-locations=classpath:/static/images:
